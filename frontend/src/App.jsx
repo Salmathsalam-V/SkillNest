@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import {Register} from '../src/Learners/Register'
+import Login from './Learners/Login';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div className="p-8 bg-blue-500 text-white">
-      <h1 className="text-2xl font-bold">Tailwind Test</h1>
-    </div>
+      <Router>
+        <Routes>
+          <Route path='/login' element={<Login/>} />
+          <Route path='/register' element={<Register/>}/>
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
