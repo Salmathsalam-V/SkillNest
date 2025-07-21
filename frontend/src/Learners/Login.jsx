@@ -3,21 +3,21 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { login } from '@/endpoints/axios';
 import { useNavigate } from 'react-router-dom';
+// import { useAuth } from '@/contexts/useAuth';
 
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // to navigate after login
+  const navigate = useNavigate(); 
 
   const handleLogin = async (e) => {
     e.preventDefault(); // prevent form refresh
-
     const res = await login(username, password);
 
     if (res?.success) {
       console.log('Login successful');
-      navigate('/register'); // or wherever you want to go
+      navigate('/'); // go to menu
     } else {
       console.error('Login failed');
       alert('Invalid credentials');
@@ -42,7 +42,7 @@ const Login = () => {
           value={password}
           placeholder="Password"
         />
-        <Button type="submit">Login</Button>
+        <Button type="submit" variant="custom" size="custom">Login</Button>
       </form>
 
         

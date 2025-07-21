@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'api',
     'accounts',
     'rest_framework_simplejwt.token_blacklist',
+    'creator',
 ]
 
 MIDDLEWARE = [
@@ -72,17 +73,16 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication', 
-    ), 
+     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'accounts.authentication.CustomJWTAuthentication',
+    ], 
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Access token valid for 60 minutes
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),  # Access token valid for 10 minutes
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     #  Refresh token valid for 1 day
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
