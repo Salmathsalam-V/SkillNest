@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import {userEffect } from 'react'
+import React, { useEffect, useState } from 'react';
 import {get_post, logout} from "../endpoints/axios"
 import { Button } from '@/components/ui/button'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+
 
 const Menu = () => {
     const [post, setPost] = useState([])
     const navigate = useNavigate();
+    const user = useSelector((state) => state.user.user);
+
     useEffect(()=>{
         const fetchPost= async ()=>{
             const posts= await get_post()
@@ -23,6 +26,8 @@ const Menu = () => {
     }
   return (
     <>
+            {user && <h2>Welcome, {user.fullname}</h2>}
+
         {post.map((pos)=>{
             return <p>{pos.caption}</p>
         })}
